@@ -1,0 +1,6 @@
+FROM osrf/ros:jazzy-desktop
+RUN apt-get update -q && \
+    apt-get install -y -q \
+        ros-jazzy-joint-state-publisher-gui \
+        ros-jazzy-xacro \
+    && rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:open.agibot.com)",
+      "Bash(docker exec *)",
+      "Bash(pip show *)",
+      "Bash(pip uninstall *)",
+      "Bash(gh auth *)",
+      "Bash(git --version)",
+      "Bash(curl --version)",
+      "Read(//home/sucre/**)",
+      "Read(//home/sucre/.config/**)",
+      "Bash(printenv)"
+    ]
+  }
+}

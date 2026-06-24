@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package aimdk.protocol;
+
+import public "aimdk/protocol/common/header.proto";
+import public "aimdk/protocol/sm/sm_api.proto";
+
+// 话题: /skillpilot/status
+message SkillPilotStatus {
+  // sm当前功能组
+  string sm_state = 1;
+  // sm功能组切换状态
+  SystemStatus sm_internal_state = 2;
+  // 不支持的原子能力列表
+  repeated string unsupport_capability = 3;
+  // 降级业务列表
+  repeated string unsupport_business = 4;
+  // 高功耗模式
+  bool is_high_power = 5;
+  // 上肢是否锁定
+  bool motion_lock = 6;
+}
