@@ -6,6 +6,54 @@
 
 ---
 
+## 0. 在新机器上恢复项目 (Restore Project on a New Machine)
+
+如果你在新机器上继续 AI coding，按以下步骤恢复完整环境（包括 Claude 的记忆上下文）。
+
+> *If you're continuing AI coding on a new machine, follow these steps to restore the full environment (including Claude's memory context).*
+
+### 0.1 克隆代码 (Clone the Repository)
+
+```bash
+git clone git@github.com:ChangeKuan/ros2_learning_A2.git
+cd ros2_learning_A2
+```
+
+> 需要先把本机 SSH 公钥添加到 GitHub：[github.com/settings/keys](https://github.com/settings/keys)
+>
+> *You need to add your machine's SSH public key to GitHub first: [github.com/settings/keys](https://github.com/settings/keys)*
+
+### 0.2 恢复 Claude AI 记忆 (Restore Claude AI Memory)
+
+Memory 文件已经存放在仓库的 `.claude/memory/` 目录里。把它们复制到 Claude Code 读取的位置：
+
+> *Memory files are stored in `.claude/memory/` inside the repo. Copy them to where Claude Code reads them:*
+
+```bash
+# 确认当前目录是项目根目录 / Make sure you're in the project root
+# 根据你的用户名调整路径 / Adjust the path to match your username
+PROJECT_PATH=$(pwd | sed 's|/|-|g' | sed 's|^-||')
+MEMORY_DIR=~/.claude/projects/${PROJECT_PATH}/memory
+
+mkdir -p "$MEMORY_DIR"
+cp .claude/memory/* "$MEMORY_DIR/"
+echo "Memory restored to $MEMORY_DIR"
+```
+
+完成后用 Claude Code 打开项目，AI 会自动加载项目背景（SDK 架构、端口表、双语要求等）。
+
+> *After this, open the project with Claude Code and the AI will automatically load the project context (SDK architecture, port table, bilingual requirement, etc.).*
+
+### 0.3 验证 (Verify)
+
+```bash
+ls ~/.claude/projects/$(pwd | sed 's|/|-|g' | sed 's|^-||')/memory/
+# 应该看到：MEMORY.md  project_robot_sdk.md  feedback_bilingual_requirement.md
+# Should show: MEMORY.md  project_robot_sdk.md  feedback_bilingual_requirement.md
+```
+
+---
+
 ## 1. 整体架构 (System Architecture)
 
 在开始写第一行代码之前，先理解你在和什么打交道。
